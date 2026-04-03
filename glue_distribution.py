@@ -167,6 +167,7 @@ def main():
     ax.set_xlabel("mc step")
     ax.set_ylabel(r"$y=\overline{x}$")
     ax.set_title("sample trajectories")
+    ax.set_xlim(0,2000)
     ax.legend(fontsize="small")
     fig.savefig(
         PLOTS_PATH / f"sample_trajectories_p{p:.4f}_size{sample_size}_.pdf",
@@ -184,7 +185,7 @@ def main():
         theta2 = histogram.parameter.theta2
         theta3 = histogram.parameter.theta3
         label = f"theta1={theta1}, theta2={theta2}, theta3={theta3}"
-        ax.plot(bin_centers, histogram.counts, marker="x", ls=" ", label=label)
+        ax.plot(bin_centers, histogram.counts, marker="o", ls="-", label=label)
 
     ax.set_yscale("log")
     ax.set_xlabel(r"$y=\overline{x}$")
