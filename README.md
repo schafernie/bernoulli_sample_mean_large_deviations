@@ -2,9 +2,9 @@
 
 Estimates the full probability distribution of the sample mean of Bernoulli random variables using a combination of direct Monte Carlo sampling and importance sampling with exponential bias weights. The sample mean is defined as
 
-$$y = \frac{1}{n} \sum_{i=1}^n x_i$$
+$$y =\overline{x}= \frac{1}{n} \sum_{i=1}^n x_i$$
 
-where $x_i$ are independent Bernoulli distributed random variables with PMF
+where $x_i$ with $i=1,...,n$ are independent Bernoulli distributed random variables with PMF
 
 $$P(x) = p^x (1-p)^{1-x}, \quad x \in \{0, 1\}.$$
 
