@@ -8,7 +8,7 @@ where $x_i$ with $i=1,...,n$ are independent Bernoulli distributed random variab
 
 $$P(x) = p^x (1-p)^{1-x}, \quad x \in \{0, 1\}.$$
 
-This approach efficiently recovers the distribution in the tails where direct sampling would be prohibitively expensive. For details on the method see: L. Münster, A. K. Hartmann and M. Weigel, Phys. Rev. E 110, 054112 (2024), https://doi.org/10.1103/PhysRevE.110.054112.
+This approach efficiently recovers the distribution in the tails where direct sampling would be prohibitively expensive. For details on the method see: L. Münster, A. K. Hartmann and M. Weigel, Phys. Rev. E 110, 054112 (2024), https://doi.org/10.1103/PhysRevE.110.054112 (see also arXiv:2405.02889) 
 
 ## Overview
 
