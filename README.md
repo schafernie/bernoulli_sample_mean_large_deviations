@@ -1,9 +1,13 @@
 # Bernoulli Sample Mean: Large-Deviations Sampling
 
 Estimates the full probability distribution of the sample mean of Bernoulli random variables using a combination of direct Monte Carlo sampling and importance sampling with exponential bias weights. The sample mean is defined as
+
 $$y = \frac{1}{n} \sum_{i=1}^n x_i$$
+
 where $x_i$ are independent Bernoulli distributed random variables with PMF
-$$P(x) = p^x (1-p)^{1-x}, \quad x \in {0, 1}.$$
+
+$$P(x) = p^x (1-p)^{1-x}, \quad x \in \{0, 1\}.$$
+
 This approach efficiently recovers the distribution in the tails where direct sampling would be prohibitively expensive. For details on the method see: L. Münster, A. K. Hartmann and M. Weigel, Phys. Rev. E 110, 054112 (2024), https://doi.org/10.1103/PhysRevE.110.054112 
 
 ## Overview
