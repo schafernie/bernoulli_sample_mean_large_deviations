@@ -71,7 +71,7 @@ cd .. && python3 glue_distribution.py --p 0.2 --sample_size 100
 
 | Argument | Default | Description |
 |---|---|---|
-| `--num_samples` | 1000 | Samples to generate |
+| `--num_samples` | 10000 | Samples to generate |
 | `--sample_size` | 100 | Trials per sample |
 | `--probability` | 0.2 | Success probability |
 | `--theta1` | -50 | Primary exponential bias parameter |

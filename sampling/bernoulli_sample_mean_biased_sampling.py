@@ -80,7 +80,7 @@ def generate_biased_sample_means(num_samples: int, sample_size: int, probability
 
 def main():
     parser = argparse.ArgumentParser(description="generate and save biased bernoulli sample means.")
-    parser.add_argument("--num_samples", type=int, default=1000, help="number of sample means to generate.")
+    parser.add_argument("--num_samples", type=int, default=10000, help="number of sample means to generate.")
     parser.add_argument("--sample_size", type=int, default=100, help="size of each sample.")
     parser.add_argument("--probability", type=float, default=0.2, help="probability of success for bernoulli distribution.")
     parser.add_argument("--rng_seed", type=int, default=50, help="seed for random number generator.")
