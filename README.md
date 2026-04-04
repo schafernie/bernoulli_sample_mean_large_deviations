@@ -71,13 +71,13 @@ cd .. && python3 glue_distribution.py --p 0.2 --sample_size 100
 
 | Argument | Default | Description |
 |---|---|---|
-| `--num_samples` | 10000 | Samples to generate |
+| `--num_samples` | 1000 | Samples to generate |
 | `--sample_size` | 100 | Trials per sample |
 | `--probability` | 0.2 | Success probability |
 | `--theta1` | -50 | Primary exponential bias parameter |
 | `--theta2` | -1 | Secondary bias parameter |
 | `--theta3` | -1 | Tertiary bias parameter |
-| `--equilibration` | 100000 | MCMC equilibration steps |
+| `--equilibration` | 1000 | MCMC equilibration steps |
 | `--delta` | 1 | Thinning interval (decorrelation) |
 | `--rng_seed` | auto | Random seed |
 
