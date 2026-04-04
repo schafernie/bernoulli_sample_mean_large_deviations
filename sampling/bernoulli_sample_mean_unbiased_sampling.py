@@ -39,7 +39,7 @@ def main():
     parser.add_argument("--num_samples", type=int, default=100000, help="number of sample means to generate.")
     parser.add_argument("--sample_size", type=int, default=100, help="size of each sample.")
     parser.add_argument("--probability", type=float, default=0.2, help="probability of success for bernoulli distribution.")
-    parser.add_argument("--rng_seed", type=int, default=1, help="seed for random number generator.")
+    parser.add_argument("--rng_seed", type=int, default=0, help="seed for random number generator.")
 
     args = parser.parse_args()
 

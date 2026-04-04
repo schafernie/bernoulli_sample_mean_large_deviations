@@ -65,7 +65,7 @@ cd .. && python3 glue_distribution.py --p 0.2 --sample_size 100
 | `--num_samples` | 100000 | Number of sample means to generate |
 | `--sample_size` | 100 | Bernoulli trials per sample |
 | `--probability` | 0.2 | Bernoulli success probability |
-| `--rng_seed` | auto | Random seed |
+| `--rng_seed` | 0 | Random seed |
 
 **`bernoulli_sample_mean_biased_sampling.py`**
 
@@ -79,7 +79,7 @@ cd .. && python3 glue_distribution.py --p 0.2 --sample_size 100
 | `--theta3` | -1 | Tertiary bias parameter |
 | `--equilibration` | 1000 | MCMC equilibration steps |
 | `--delta` | 1 | Thinning interval (decorrelation) |
-| `--rng_seed` | auto | Random seed |
+| `--rng_seed` | 1 | Random seed |
 
 ## Outputs
 
