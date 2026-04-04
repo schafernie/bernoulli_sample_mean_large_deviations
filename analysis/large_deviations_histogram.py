@@ -27,15 +27,6 @@ class Histogram:
         """Return the centers of the histogram bins."""
         return (self.bin_edges[1 : self.nr_bins + 1] + self.bin_edges[: self.nr_bins]) / 2
 
-    def bootstrap_counts(self, rng):
-        """Draw a bootstrap sample and return its histogram counts."""
-        bootstrap_sample = rng.choice(self.values, self.all_counts, replace=True)
-        return np.histogram(bootstrap_sample, bins=self.bin_edges)[0]
-
-    def boot_counts(self, rng):
-        """Backward-compatible alias for :meth:`bootstrap_counts`."""
-        return self.bootstrap_counts(rng)
-
     def print(self):
         """Print the associated bias parameters."""
         self.parameter.print()
