@@ -94,51 +94,49 @@ def _compute_pair_shift(counts_a, counts_b, values_a, values_b, shift_a):
     return np.sum(overlap_counts * (values_a - values_b)) / overlap_sum + shift_a
 
 
-def _sort_histogram_indices(histograms):
+def _order_histogram_indices(histograms):
     """Order histogram indices from negative theta1 through zero to positive theta1."""
+   # print("hallo welt")
     reference_index = _find_reference_histogram_index(histograms)
 
     negative_indices = sorted(
         [index for index, hist in enumerate(histograms) if hist.parameter.theta1 < -1e-7],
-        key=lambda index: histograms[index].parameter.theta1,
+        key=lambda index: (histograms[index].parameter.theta1, histograms[index].parameter.theta3),
     )
     positive_indices = sorted(
         [index for index, hist in enumerate(histograms) if hist.parameter.theta1 > 1e-7],
-        key=lambda index: histograms[index].parameter.theta1,
+        key=lambda index: (histograms[index].parameter.theta1, histograms[index].parameter.theta3),
     )
 
     return negative_indices + [reference_index] + positive_indices
 
 
+def order_histograms(histograms):
+    """Sort histograms in place by theta1, then theta3."""
+    ordered = [histograms[i] for i in _order_histogram_indices(histograms)]
+    histograms[:] = ordered
+
+
 def _compute_shifts(histograms):
-    """Compute additive shifts that align all histograms on a common scale."""
+    """Compute additive shifts that align all histograms on a common scale.
+
+    Assumes histograms are already sorted (e.g. via order_histograms).
+    """
     ys = histograms[0].get_bin_center()
     with np.errstate(divide="ignore"):
         log_counts = [np.log(hist.counts) for hist in histograms]
-    ordered_indices = _sort_histogram_indices(histograms)
-    ordered_histograms = [histograms[index] for index in ordered_indices]
-    ordered_log_counts = [log_counts[index] for index in ordered_indices]
-
-    ordered_shifts = np.zeros(len(ordered_histograms))
-
-    for index in range(1, len(ordered_histograms)):
-        values_a = _reweighted_log_counts(
-            ordered_log_counts[index - 1], ys, ordered_histograms[index - 1].parameter
-        )
-        values_b = _reweighted_log_counts(
-            ordered_log_counts[index], ys, ordered_histograms[index].parameter
-        )
-        ordered_shifts[index] = _compute_pair_shift(
-            ordered_histograms[index - 1].counts,
-            ordered_histograms[index].counts,
-            values_a,
-            values_b,
-            ordered_shifts[index - 1],
-        )
 
     shifts = np.zeros(len(histograms))
-    for index, original_index in enumerate(ordered_indices):
-        shifts[original_index] = ordered_shifts[index]
+    for index in range(1, len(histograms)):
+        values_a = _reweighted_log_counts(log_counts[index - 1], ys, histograms[index - 1].parameter)
+        values_b = _reweighted_log_counts(log_counts[index], ys, histograms[index].parameter)
+        shifts[index] = _compute_pair_shift(
+            histograms[index - 1].counts,
+            histograms[index].counts,
+            values_a,
+            values_b,
+            shifts[index - 1],
+        )
 
     return shifts
 
@@ -167,6 +165,7 @@ def _plot_reweighted_histograms(histograms):
 
 def ln_density(histograms, do_plot=True):
     """Glue histograms into one normalized log-density."""
+    order_histograms(histograms)
     y = histograms[0].get_bin_center()
     with np.errstate(divide="ignore"):
         log_counts = [np.log(hist.counts) for hist in histograms]

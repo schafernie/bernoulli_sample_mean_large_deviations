@@ -7,12 +7,12 @@ import math
 import re
 from pathlib import Path
 
-import matplotlib
-matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 from analysis import large_deviations_histogram as ld
 
+
+plt.close("all")
 
 DATA_PATH = Path("./data")
 PLOTS_PATH = Path("./plots")
@@ -30,7 +30,7 @@ BIN_EDGES = np.arange(BIN_START, BIN_END, BIN_WIDTH)
 
 # Output options
 SAVE_DATA = True
-SHOW_PLOTS = False
+SHOW_PLOTS = True
 
 
 def log_bernoulli_sample_mean_pmf(k, n, p):
@@ -55,7 +55,7 @@ def load_values(file_paths, skip=0):
     all_values = []
 
     for file_path in file_paths:
-        values = np.atleast_1d(np.loadtxt(file_path))
+        values = np.loadtxt(file_path)
         # For biased runs we can discard an initial equilibration window if needed.
         values = values[skip:]
         if len(values) > 0:
@@ -85,21 +85,22 @@ def main():
     p = args.p
     sample_size = args.sample_size
 
-    plt.close("all")
+    #%%
+    
+    print("hallo welt")
+    
+    #%%
 
     PLOTS_PATH.mkdir(exist_ok=True)
 
     # First discover which biased parameter combinations are available on disk.
-    biased_files = sorted(
-        DATA_PATH.glob(f"bernoulli_mean_biased_p{p:.4f}_size{sample_size}_*_.dat")
-    )
+    biased_files = DATA_PATH.glob(f"bernoulli_mean_biased_p{p:.4f}_size{sample_size}_*_.dat")
 
     parameter_sets = set()
     for file_path in biased_files:
         parameter_sets.add(read_bias_parameters(file_path))
 
-    parameter_sets = sorted(parameter_sets)
-
+        
     print("biased parameter sets found:")
     for theta1, theta2, theta3 in parameter_sets:
         print(f"theta1={theta1}, theta2={theta2}, theta3={theta3}")
@@ -108,9 +109,8 @@ def main():
     # Start with the unbiased reference data.
     histograms = []
 
-    unbiased_files = sorted(
-        DATA_PATH.glob(f"bernoulli_mean_unbiased_p{p:.4f}_size{sample_size}_seed*_.dat")
-    )
+    unbiased_files = DATA_PATH.glob(f"bernoulli_mean_unbiased_p{p:.4f}_size{sample_size}_seed*_.dat")
+ 
     unbiased_values = load_values(unbiased_files)
 
     if len(unbiased_values) > 0:
@@ -153,7 +153,8 @@ def main():
     print(f"loaded {len(histograms)} histograms")
     print(f"maximum number of samples: {max(sample_counts)}")
     print(f"minimum number of samples: {min(sample_counts)}")
-
+    
+    ld.order_histograms(histograms)
 
     # Plot the raw sampled values to see which region each run explores.
     fig, ax = plt.subplots()
@@ -243,3 +244,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# %%
