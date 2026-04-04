@@ -88,7 +88,7 @@ def main():
     parser.add_argument("--theta2", type=float, default=-1, help="bias parameter 2.")
     parser.add_argument("--theta3", type=float, default=-1, help="bias parameter 3.")
     parser.add_argument("--equilibration", type=int, default=100000, help="equilibration steps.")
-    parser.add_argument("--delta", type=int, default=10, help="thinning interval.")
+    parser.add_argument("--delta", type=int, default=1, help="thinning interval.")
 
     args = parser.parse_args()
 

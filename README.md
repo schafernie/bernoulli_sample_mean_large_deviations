@@ -78,7 +78,7 @@ cd .. && python3 glue_distribution.py --p 0.2 --sample_size 100
 | `--theta2` | -1 | Secondary bias parameter |
 | `--theta3` | -1 | Tertiary bias parameter |
 | `--equilibration` | 100000 | MCMC equilibration steps |
-| `--delta` | 10 | Thinning interval (decorrelation) |
+| `--delta` | 1 | Thinning interval (decorrelation) |
 | `--rng_seed` | auto | Random seed |
 
 ## Outputs
