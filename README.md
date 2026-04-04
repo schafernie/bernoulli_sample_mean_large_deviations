@@ -95,7 +95,7 @@ cd .. && python3 glue_distribution.py --p 0.2 --sample_size 100
 
 ## Method
 
-The bias function has the form `exp(theta1 * y + theta2 / 2 * (y-theta3)**2 )`. Running with ten values of theta3 spanning -500 to 500 forces the MCMC to explore different regions of the sample-mean range, including the far tails. The glueing step computes pairwise shifts between overlapping histograms, applies bias corrections, and averages overlapping regions to produce a log-density estimate.
+The bias function has the form `exp(theta1 * y + theta2**2 / 2 * (y-theta3)**2 )`. Running with ten values of theta3 spanning -500 to 500 forces the MCMC to explore different regions of the sample-mean range, including the far tails. The glueing step computes pairwise shifts between overlapping histograms, applies bias corrections, and averages overlapping regions to produce a log-density estimate.
 
 Exact PMF values are computed in log space using the log-gamma function for numerical stability.
 
