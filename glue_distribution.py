@@ -85,12 +85,6 @@ def main():
     p = args.p
     sample_size = args.sample_size
 
-    #%%
-    
-    print("hallo welt")
-    
-    #%%
-
     PLOTS_PATH.mkdir(exist_ok=True)
 
     # First discover which biased parameter combinations are available on disk.
@@ -245,4 +239,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-# %%
